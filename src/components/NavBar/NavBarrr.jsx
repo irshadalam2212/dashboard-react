@@ -3,7 +3,6 @@ import "../NavBar/Navbar.css";
 import {
   AppBar,
   Toolbar,
-  Typography,
   Tabs,
   Tab,
   Card,
@@ -11,8 +10,12 @@ import {
   IconButton,
   Grid,
   Box,
+  InputBase,
+  Badge,
+  Avatar,
 } from "@mui/material";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Notifications, Search } from "@mui/icons-material";
 
 const Dashboard = () => <div>Dashboard</div>;
 const Research = () => <div>Research</div>;
@@ -34,59 +37,81 @@ const Navbar = () => {
   return (
     <Card>
       <CardContent>
-        <AppBar position="static" color="default">
+        <AppBar position="fixed" color="default">
           <Toolbar>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              indicatorColor="none"
-              textColor="green"
-              sx={{
-                ".MuiTabs-flexContainer": {
-                  borderBottom: "none",
-                },
-                ".MuiTab-root": {
-                  textDecoration: "none",
-                  minWidth: 100,
-                  minHeight: 48,
-                  textTransform: "capitalize",
-                },
-                ".Mui-selected": {
-                  fontWeight: "bold",
-                  color: "green",
-                },
-              }}
-            >
-              <Tab label="Dashboard" component={Link} to="/" />
-              <Tab label="Research" component={Link} to="/research" />
-              <Tab label="Hierarchy" component={Link} to="/hierarchy" />
-              <Tab label="Clients" component={Link} to="/clients" />
-              <Tab label="Analysts" component={Link} to="/analysts" />
-              <Tab
-                label="Settings"
-                component={Link}
-                to="/settings/manageBranch"
-              />
-              <Tab label="Help" component={Link} to="/help" />
-            </Tabs>
-            {/* <Box sx={{ flexGrow: 7}} /> This empty box creates space between tabs and icons */}
-            {/* <Grid container justifyContent="flex" spacing={2}>
-              <Grid item>
-                <IconButton  component={Link} to="/search">
-                  <SearchIcon />
-                </IconButton>
+            <Grid container alignItems="center">
+              <Grid item xs={2}></Grid>
+              <Grid item xs={6}>
+                <Tabs
+                  value={value}
+                  onChange={handleChange}
+                  indicatorColor="none"
+                  textColor="green"
+                  sx={{
+                    ".MuiTabs-flexContainer": {
+                      borderBottom: "none",
+                    },
+                    ".MuiTab-root": {
+                      textDecoration: "none",
+                      minWidth: 100,
+                      minHeight: 48,
+                      textTransform: "capitalize",
+                    },
+                    ".Mui-selected": {
+                      fontWeight: "bold",
+                      color: "green",
+                    },
+                  }}
+                >
+                  <Tab label="Dashboard" component={Link} to="/" />
+                  <Tab label="Research" component={Link} to="/research" />
+                  <Tab label="Hierarchy" component={Link} to="/hierarchy" />
+                  <Tab label="Clients" component={Link} to="/clients" />
+                  <Tab label="Analysts" component={Link} to="/analysts" />
+                  <Tab
+                    label="Settings"
+                    component={Link}
+                    to="/settings/manageBranch"
+                  />
+                  <Tab label="Help" component={Link} to="/help" />
+                </Tabs>
               </Grid>
-              <Grid item>
-                <IconButton  component={Link} to="/notifications">
-                  <NotificationsIcon />
-                </IconButton>
+              <Grid item xs={4}>
+                <Box
+                  display="flex"
+                  justifyContent="flex-end"
+                  alignItems="center"
+                >
+                  <InputBase
+                    placeholder="Search…"
+                    inputProps={{ "aria-label": "search" }}
+                    startAdornment={
+                      <IconButton>
+                        <Search style={{ color: "gray" }} />
+                      </IconButton>
+                    }
+                    sx={{
+                      backgroundColor: "#f1f3f4",
+                      borderRadius: 1,
+                      padding: "0 8px",
+                      height: 36,
+                      marginRight: 2,
+                    }}
+                  />
+                  <IconButton color="inherit">
+                    <Badge color="secondary">
+                      <Notifications style={{ color: "gray" }} />
+                    </Badge>
+                  </IconButton>
+                  <IconButton color="inherit">
+                    <Avatar
+                      alt="User Avatar"
+                      src="/static/images/avatar/1.jpg"
+                    />
+                  </IconButton>
+                </Box>
               </Grid>
-              <Grid item>
-                <IconButton component={Link} to="/profile">
-                  <AccountCircleIcon />
-                </IconButton>
-              </Grid>
-            </Grid> */}
+            </Grid>
           </Toolbar>
         </AppBar>
       </CardContent>
@@ -97,35 +122,9 @@ const Navbar = () => {
 const NavBarrr = () => {
   return (
     <Router>
-      <div style={{ padding: "1rem" }}>
-        <div style={{ position: "relative", zIndex: "9999" }}>
-          <span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="30"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="feather feather-arrow-left"
-              style={{
-                position: "absolute",
-                left: "125px",
-                bottom: "-65px",
-                background: "white",
-                borderRadius: '10%',
-              }}
-            >
-              <line x1="19" y1="12" x2="5" y2="12"></line>
-              <polyline points="12 19 5 12 12 5"></polyline>
-            </svg>
-          </span>
-        </div>
+      <div>
         <Navbar />
-        <div style={{ marginTop: "1rem" }}>
+        <div>
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/research" element={<Research />} />

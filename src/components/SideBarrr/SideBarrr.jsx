@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../SideBarrr/Silderbar.css';
+import "../SideBarrr/Silderbar.css";
 import {
   Drawer,
   List,
@@ -7,6 +7,7 @@ import {
   ListItemIcon,
   ListItemText,
   Collapse,
+  ListItemButton,
 } from "@mui/material";
 import {
   ExpandLess,
@@ -22,6 +23,8 @@ import {
 } from "@mui/icons-material";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { TableList } from "../Table/TableList";
+import AddCategory from "../AddCategory";
 
 const Dashboard = () => <div>Dashboard</div>;
 const Research = () => <div>Research</div>;
@@ -30,7 +33,7 @@ const Clients = () => <div>Clients</div>;
 const Analysts = () => <div>Analysts</div>;
 const ManageBranch = () => <div>Manage Branch</div>;
 const ManageUser = () => <div>Manage User</div>;
-const AddCategory = () => <div>Add Category</div>;
+// const AddCategory = () => <div><AddCategory/></div>;
 const HelpPage = () => <div>Help</div>;
 
 const menuItems = [
@@ -77,8 +80,10 @@ const menuItems = [
       },
       {
         title: "Add Category",
-        icon: <Settings />,
-        link: "/src/components/AddCategory",
+        icon: <TableList />,
+        // link: "/src/components/AddCategory",
+
+        link: "/settings/addCategory",
         dot: true,
       },
     ],
@@ -110,19 +115,19 @@ const SideBarrr = () => {
             {menuItems.map((item, index) =>
               item.dropdown ? (
                 <React.Fragment key={index}>
-                  <ListItem button onClick={handleClick}>
+                  <ListItemButton onClick={handleClick}>
                     <ListItemIcon>{item.icon}</ListItemIcon>
                     <ListItemText
                       primary={item.title}
                       sx={{
-                        color: activeItem === item.title ? 'green' : 'white',
-                        '&:hover': {
-                          color: 'green',
+                        color: activeItem === item.title ? "green" : "white",
+                        "&:hover": {
+                          color: "green",
                         },
                       }}
                     />
                     {openSettings ? <ExpandLess /> : <ExpandMore />}
-                  </ListItem>
+                  </ListItemButton>
                   <Collapse in={openSettings} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                       {item.dropdown.map((subItem, subIndex) => (
@@ -136,16 +141,23 @@ const SideBarrr = () => {
                           <ListItemIcon>
                             {subItem.dot && (
                               <Circle
-                                style={{ fontSize: 10, marginLeft: 20, color: 'green' }}
+                                style={{
+                                  fontSize: 10,
+                                  marginLeft: 20,
+                                  color: "green",
+                                }}
                               />
                             )}
                           </ListItemIcon>
                           <ListItemText
                             primary={subItem.title}
                             sx={{
-                              color: activeItem === subItem.title ? 'green' : 'white',
-                              '&:hover': {
-                                color: 'green',
+                              color:
+                                activeItem === subItem.title
+                                  ? "green"
+                                  : "white",
+                              "&:hover": {
+                                color: "green",
                               },
                             }}
                           />
@@ -166,9 +178,9 @@ const SideBarrr = () => {
                   <ListItemText
                     primary={item.title}
                     sx={{
-                      color: activeItem === item.title ? 'green' : 'white',
-                      '&:hover': {
-                        color: 'green',
+                      color: activeItem === item.title ? "green" : "white",
+                      "&:hover": {
+                        color: "green",
                       },
                     }}
                   />
@@ -177,7 +189,7 @@ const SideBarrr = () => {
             )}
           </List>
         </Drawer>
-        <div style={{ marginLeft: 240, padding: "1rem", width: "100%" }}>
+        <div style={{ marginLeft: 180, padding: "1rem", width: "100%" }}>
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/research" element={<Research />} />
@@ -186,7 +198,7 @@ const SideBarrr = () => {
             <Route path="/analysts" element={<Analysts />} />
             <Route path="/settings/manageBranch" element={<ManageBranch />} />
             <Route path="/settings/manageUser" element={<ManageUser />} />
-            <Route path="/settings/addCategory" element={<AddCategory />} />
+            <Route path="/settings/addCategory" element={<TableList />} />
             <Route path="/help" element={<HelpPage />} />
           </Routes>
         </div>
