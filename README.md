@@ -13,7 +13,7 @@ Make sure you have the following software installed on your machine:
 
 First, clone the repository from GitHub to your local machine:
 
-git clone https://github.com/your-username/your-repo-name.git
+git clone [https://github.com/irshadalam2212/dashboard-react.git]
 
 # Navigate to Project directory
 
